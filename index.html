@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munna</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            /* background: linear-gradient(to right,black, #d856c2a6, #c730dbd5, black); */
+            background: linear-gradient(#241822);
+        }
+
+        /* #start {
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            color: #4B0082;
+            border: none;
+            padding: 18px 36px;
+            font-size: 24px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transform: translate(-50%, -50%); 
+        } */
+
+        /* #start {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            color: #4B0082;
+            border: none;
+            padding: 18px 36px;
+            font-size: 24px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease, transform 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        #start:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        }
+
+        #start.clicked {
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0;
+        } */
+        #start {
+            z-index: 2;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            color: #4B0082;
+            border: none;
+            padding: 18px 36px;
+            font-size: 24px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: transform 1.5s ease, opacity 1.5s ease;
+        }
+
+        #start {
+            transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+        }
+
+        #start.clicked {
+            transform: translate(-50%, -50%) scale(0.1) rotate(720deg);
+            opacity: 0;
+        }
+
+        .image {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+        }
+
+        .image-with-mask::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            inset: 0;
+            background-image: url('munna.png');
+            background-size: cover;
+            /* background-position: 50% 50%; */
+            /*background-repeat: none;
+            /* background-image: url('munna0.png');
+            background-size: contain; */
+            background-position: 60% 50%;
+            /* background-repeat: no-repeat; */
+            /* background-position: center center; */
+            -webkit-mask-image: url('gif2.gif');
+            -webkit-mask-size: cover;
+            -webkit-mask-position: 60% 50%;
+            mask-image: url('gif2.gif');
+            mask-size: cover;
+            mask-position: center;
+            z-index: 1;
+
+            /* mask-image: url('ink_gif.gif'); */
+            /* mask-image: url('gif2.gif');*/
+            /* mask-size: cover;
+            mask-position: center; */
+        }
+    </style>
+
+</head>
+<!-- https://mp3cut.net/ -->
+
+<body>
+    <button id="start">स्पर्श करें</button>
+    <audio src="dilBachha0.mp3"></audio>
+
+    <div class="container">
+        <div class="image"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        $('#start').on('click', function () {
+            const $btn = $(this);
+            $btn.addClass('clicked');
+            setTimeout(() => {
+                $btn.css('display', 'none');
+            }, 1600);
+
+            $(this).fadeOut(1000, function () {
+                $(this).css('display', 'none');
+            });
+
+            console.log("SBSR");
+            document.querySelector('audio').play();
+            setTimeout(() => {
+                const imageElement = document.querySelector('.image');
+                imageElement.classList.add('image-with-mask');
+            }, 2000 * 6);
+        });
+    </script>
+
+
+</body>
+
+</html>
